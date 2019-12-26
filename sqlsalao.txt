@@ -1,0 +1,51 @@
+use bdSalao
+
+create table tbCliente(
+	telefoneCliente varchar(20) primary key not null
+	, nomeCliente varchar(50) not null
+	,dataNascto varchar(15)not null
+	, debitoCliente money 
+	, creditoCliente money 
+)
+create table tbColab(
+	telefoneColab varchar(20) primary key not null
+	, nomeColab varchar(50) not null
+	,logradouroColab varchar(100) not null
+	,numLogColab varchar(10) not null
+	,bairroColab varchar(50) not null
+	,cidadeColab varchar(50) not null
+	,dataNasctoColab varchar(15) not null
+	,funcaoColab varchar(30) not null
+	,diasTrabalho varchar(100) not null
+	,comissaoColab int not null
+	
+)
+
+create table tbServico(
+	codServico int primary key not null
+	, descServico varchar(100) not null
+	,valorServico smallmoney not null
+)
+
+create table tbFormaPagamento(
+	codFormaPagamento int primary key 
+	,descFormaPagto varchar(60) not null
+)
+
+create table tbVenda(
+	 codVenda int primary key identity(1,1)
+	,dataVenda varchar(10)
+	,valorVenda money
+	,telefoneCliente varchar(20) foreign key references tbCliente(telefoneCliente)
+)
+
+create table tbAgendamentos(
+	codAgendamentos int primary key 
+	,dataAgendamento varchar(10)
+	,hora varchar(10)
+	,
+)
+
+
+select * from tbServico
+				
