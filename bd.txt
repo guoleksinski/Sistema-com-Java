@@ -1,0 +1,87 @@
+use bdSalaoMarisa
+
+create table tbCliente(
+	codCliente int primary key identity(1,1)
+	,telefoneCliente varchar(20) not null
+	, nomeCliente varchar(50) not null
+	,dataNascto varchar(15)not null
+	, debitoCliente money 
+	, creditoCliente money 
+)
+create table tbColab(
+	telefoneColab varchar(20) primary key not null
+	, nomeColab varchar(50) not null
+	,logradouroColab varchar(100) not null
+	,numLogColab varchar(10) not null
+	,bairroColab varchar(50) not null
+	,cidadeColab varchar(50) not null
+	,dataNasctoColab varchar(15) not null
+	,funcaoColab varchar(30) not null
+	,diasTrabalho varchar(100) not null
+	,comissaoColab int not null
+	
+)
+
+create table tbServico(
+	codServico int primary key not null
+	, descServico varchar(100) not null
+	,valorServico smallmoney not null
+)
+
+create table tbFormaPagamento(
+	codFormaPagamento int primary key 
+	,descFormaPagto varchar(60) not null
+)
+
+create table tbVenda(
+	 codVenda int primary key identity(1,1)
+	,dataVenda varchar(10)
+	,valorVenda money
+	,codCliente int foreign key references tbCliente(codCliente)
+)
+
+create table tbHorario(
+	codHorario int primary key identity(1,1)
+	,hora varchar(10)
+	)
+
+
+create table tbAtendimento(
+	codAtendimento int primary key 
+	,dataAtendimento date
+	,codCliente int foreign key references tbCliente(codCliente)
+	,codHorario int foreign key references tbHorario(codHorario)
+	)
+	
+	
+select * from tbHorario
+left join tbAtendimento
+on tbHorario.codHorario = tbAtendimento.codAtendimento
+left join tbCliente
+on tbCliente.codCliente = tbAtendimento.codHorario
+				
+select * from tbCliente
+insert into tbAtendimento
+values(1,'13-02-2019',1,4)
+insert into tbHorario(hora) 
+values('06:00')
+,('07:00')
+,('08:00')
+,('09:00')
+,('10:00')
+,('11:00')
+,('12:00')
+,('13:00')
+,('14:00')
+,('15:00')
+,('16:00')
+,('17:00')
+,('18:00')
+,('19:00')
+,('20:00')
+,('21:00')
+,('22:00')
+,('23:00')
+,('00:00')
+
+select * from tbHorario

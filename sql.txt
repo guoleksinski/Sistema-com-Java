@@ -1,0 +1,96 @@
+use bdSalao
+
+create table tbCliente(
+	codCliente int primary key identity(1,1)
+	,telefoneCliente varchar(20) not null
+	,nomeCliente varchar(50) not null
+	,dataNascto varchar(15)not null
+	, debitoCliente money 
+	, creditoCliente money 
+)
+create table tbColab(
+	telefoneColab varchar(20) primary key not null
+	, nomeColab varchar(50) not null
+	,logradouroColab varchar(100) not null
+	,numLogColab varchar(10) not null
+	,bairroColab varchar(50) not null
+	,cidadeColab varchar(50) not null
+	,dataNasctoColab varchar(15) not null
+	,funcaoColab varchar(30) not null
+	,diasTrabalho varchar(100) not null
+	,comissaoColab int not null
+	
+)
+
+create table tbServico(
+	codServico int primary key not null
+	, descServico varchar(100) not null
+	,valorServico smallmoney not null
+)
+
+create table tbFormaPagamento(
+	codFormaPagamento int primary key 
+	,descFormaPagto varchar(60) not null
+)
+
+create table tbVenda(
+	 codVenda int primary key identity(1,1)
+	,dataVenda varchar(10)
+	,valorVenda money
+	,telefoneCliente varchar(20) foreign key references tbCliente(telefoneCliente)
+)
+
+create table tbAgendamento(
+	codAgendamentos int primary key identity(1,1)
+	,dataAgendamento varchar(10)
+	,horaAgendamento varchar(10)
+	,codCliente int foreign key references tbCliente(codCliente)
+	,codAgenda int foreign key references tbAgenda(codAgenda)
+)
+insert tbAgendamento(dataAgendamento,horaAgendamento,codCliente,codAgenda)
+values('31/12/2019','08:00',1,4)
+
+create table tbAgenda(
+	codAgenda int primary key identity(1,1)
+	,horaAgenda varchar(20)
+	,dataAgenda date
+	,nomeCliente varchar(70) 
+	,telefoneCliente varchar(20) 
+)
+drop table tbAgenda
+
+select * from tbAgenda
+left join tbCliente
+on
+tbCliente.codCliente = tbAgenda.codAgenda
+
+UPDATE tbAgenda
+SET nomeCliente = ''
+WHERE horaAgenda = '08:00'
+
+
+
+drop table tbAgendamento
+insert tbAgenda(horaAgenda,dataAgenda)
+values ('06:00','31/12/2019')
+,('07:00','31/12/2019')
+,('08:00','31/12/2019')
+,('09:00','31/12/2019')
+,('10:00','31/12/2019')
+,('11:00','31/12/2019')
+,('12:00','31/12/2019')
+,('13:00','31/12/2019')
+,('14:00','31/12/2019')
+,('15:00','31/12/2019')
+,('16:00','31/12/2019')
+,('17:00','31/12/2019')
+,('18:00','31/12/2019')
+,('19:00','31/12/2019')
+,('20:00','31/12/2019')
+,('21:00','31/12/2019')
+,('22:00','31/12/2019')
+,('23:00','31/12/2019')
+
+
+select * from tbAgenda
+				
